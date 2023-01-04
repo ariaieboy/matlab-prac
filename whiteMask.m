@@ -36,7 +36,7 @@ se = strel("square",5);
 BW = imopen(BW,se);
 
 % select biggest whit ara as the ring beecaus of th camera flash lights
-% BW = bwpropfilt(BW,'Area',1);
+BW = bwpropfilt(BW,'Area',1);
 
 % Initialize output masked image based on input image.
 maskedRGBImage = RGB;
