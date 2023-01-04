@@ -1,5 +1,5 @@
 clear all;
-image = imread('pictures\2021-12-13_15-19-09.jpg');
+image = imread('pictures\what.jpg');
 yellow = yellowMask(image);
 bmask = blueMask(image);
 wmask = whiteMask(image);
@@ -9,6 +9,7 @@ yellow = imopen(yellow,struct);
 x = sum(yellow,2);
 [yellowIndex,ColNrs] = find(x>0);
 yellowHeight = mean(yellowIndex);
+m=yellow==1;
 red = image(:,:,1);
 green = image(:,:,2);
 blue = image(:,:,3);
