@@ -1,4 +1,5 @@
 function [BW,mean_height,maskedImage] = maskBlack(X)
+X = rgb2gray(X);
 %segmentImage Segment image using auto-generated code from imageSegmenter app
 %  [BW,MASKEDIMAGE] = segmentImage(X) segments image X using auto-generated
 %  code from the imageSegmenter app. The final segmentation is returned in

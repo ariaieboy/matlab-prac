@@ -1,20 +1,22 @@
-clear all;
-image = imread('pictures\2021-11-03_13-58-53.jpg');
+close all
+clear all
+clc
+image = imread('pictures\what.jpg');
 [yellow_mask,yellow_height] = yellowMask(image);
 [blue_mask,blue_height] = blueMask(image);
 [white_mask,white_height] = whiteMask(image);
-[black_mask,black_height]=maskBlack(image);
+[black_mask,black_height] = maskBlack(image);
+black_place = blackMissPlaceDetector(black_mask);
 
-length = sum(black_mask,2);
-nonzero = nonzeros(length);
-[x,ind] = max(nonzero);
-[w,h] = size(nonzero);
-result = w/2 < x;
-order = blue_height < white_height < yellow_height;
+order = (blue_height < white_height) && (white_height < yellow_height)&&(yellow_height < black_height);
 if (order)
     order_title = "order: correct";
 else
     order_title = "order: wrong";
 end
-
-subplot(1,1,1);imshow(image);title(order_title);
+if(black_place)
+    black_title = "black: correct";
+else
+    black_title = "black: wrong";
+end
+subplot(1,1,1);imshow(image);title(strcat(order_title,'  |  ',black_title));
