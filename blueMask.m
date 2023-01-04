@@ -39,7 +39,7 @@ maskedRGBImage = RGB;
 % Set background pixels where BW is false to zero.
 maskedRGBImage(repmat(~BW,[1 1 3])) = 0;
 
-% calculate the averag height of yellow section
+% calculate the averag height of blue section
 x = sum(BW,2);
 blueIndeex = find(x>0);
 mean_height = mean(blueIndeex);
