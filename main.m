@@ -1,7 +1,7 @@
 close all
 clear all
 clc
-image = imread('pictures\what.jpg');
+image = imread('pictures\black-ok.jpg');
 [yellow_mask,yellow_height] = yellowMask(image);
 [blue_mask,blue_height] = blueMask(image);
 [white_mask,white_height] = whiteMask(image);
