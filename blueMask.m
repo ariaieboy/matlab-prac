@@ -1,4 +1,4 @@
-function [BW,maskedRGBImage] = blueMask(RGB)
+function [BW,mean_height,maskedRGBImage] = blueMask(RGB)
 %createMask  Threshold RGB image using auto-generated code from colorThresholder app.
 %  [BW,MASKEDRGBIMAGE] = createMask(RGB) thresholds image RGB using
 %  auto-generated code from the colorThresholder app. The colorspace and
@@ -30,11 +30,17 @@ sliderBW = (I(:,:,1) >= channel1Min ) & (I(:,:,1) <= channel1Max) & ...
     (I(:,:,2) >= channel2Min ) & (I(:,:,2) <= channel2Max) & ...
     (I(:,:,3) >= channel3Min ) & (I(:,:,3) <= channel3Max);
 BW = sliderBW;
-
+% Reduce unwanted mask noise
+se = strel("square",5);
+BW = imopen(BW,se);
 % Initialize output masked image based on input image.
 maskedRGBImage = RGB;
 
 % Set background pixels where BW is false to zero.
 maskedRGBImage(repmat(~BW,[1 1 3])) = 0;
 
+% calculate the averag height of yellow section
+x = sum(BW,2);
+blueIndeex = find(x>0);
+mean_height = mean(blueIndeex);
 end
