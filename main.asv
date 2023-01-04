@@ -1,7 +1,7 @@
 close all
 clear all
 clc
-image = imread('pictures\black-ok.jpg');
+image = imread('pictures\a-angle.jpg');
 [yellow_mask,yellow_height,im] = yellowMask(image);
 [blue_mask,blue_height] = blueMask(image);
 [white_mask,white_height] = whiteMask(image);
@@ -32,4 +32,4 @@ else
     angle_title = "angle: correct";
 end
 
-subplot(1,1,1);imshow(image);title(strcat(order_title,'  |',black_title,' | ',angle_title));xlabel('what');
+subplot(1,1,1);imshow(image);title(strcat(order_title,'  |',black_title,' | ',angle_title));
